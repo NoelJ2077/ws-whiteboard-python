@@ -1,4 +1,4 @@
-/* Willkommensbereich Styling */
+/* starting point */
 .welcome-section {
     max-width: 900px;
     margin: 0 auto;
@@ -18,7 +18,7 @@
     font-size: 1.1rem;
 }
 
-/* Karten-Layout */
+/* cards */
 .info-card {
     background-color: #2a2a3d;
     border-radius: 10px;

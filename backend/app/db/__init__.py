@@ -17,10 +17,10 @@ async def init_db(retries=10, delay=3):
     with open(sql_file, "r", encoding="utf-8") as f:
         sql_text = f.read()
 
-    # Kommentare entfernen (Zeilen die mit -- beginnen)
+    # remove sql comments
     sql_text = re.sub(r"--.*", "", sql_text)
 
-    # Aufsplitten
+    # split
     statements = [s.strip() for s in sql_text.split(";") if s.strip()]
 
     for attempt in range(1, retries + 1):

@@ -52,17 +52,16 @@ ws.onmessage = event => {
         return;
     }
     
-    if (!data.message) return; // helping 
-    
-    if (data.type === "servercmd" && data.message?.includes("E-Mail gesetzt")) {
-        const email = data.message.match(/[\w.-]+@[\w.-]+\.\w+/);
-        email && window.aliasManager?.confirmEmailSuccess(email[0]);
-    }
-
     if (data.type === "admin_status") {
         const newAdmin = data.curr_admin;
         sessionStorage.setItem("currAdmin", newAdmin);
         document.getElementById("curr_admin").textContent = newAdmin;
+        return;
+    }
+    
+    if (data.type === "servercmd" && data.message?.includes("E-Mail gesetzt")) {
+        const email = data.message.match(/[\w.-]+@[\w.-]+\.\w+/);
+        email && window.aliasManager?.confirmEmailSuccess(email[0]);
     }
 
     // START (Task 2) -> die neuen befehle sind Speziell z.b. bei @serveradmin ist das input direkt die message, es braucht somit kein Funktionsname extra im inputfeld. 

@@ -1,7 +1,7 @@
 # app/ws/handler.py
 import json
 from app.services.taskhandler import TaskHandler
-from app.services.Modulaufgaben import Namespaces as __cmd_namespaces__
+from app.services.Modulaufgaben import Namespaces as _cmd_modules_
 from app.utils.logger import Logger
 from app.db.repository import Repository
 
@@ -24,7 +24,7 @@ class MessageHandler:
         }
 
         # add command input for all namespaces dynamically
-        for ns in __cmd_namespaces__:
+        for ns in _cmd_modules_:
             self.std_handlers[f"{ns}cmd"] = self._handle_commandinput
         
         #Log.info(f"handlers: {self.std_handlers}")

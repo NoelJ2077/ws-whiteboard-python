@@ -34,7 +34,6 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
         while True:
             raw = await websocket.receive_text()
             data = json.loads(raw)
-            # admin logik nötig?
             await handler.handle_message(client_id, websocket, data)
     except WebSocketDisconnect: # Achtung, wird auch bei reload des Tabs zu disconnect führen, JS holt die id einfach wieder aus der Tab-chache. 
         result = manager.disconnect(client_id)

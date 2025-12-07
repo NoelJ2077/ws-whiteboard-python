@@ -56,12 +56,10 @@ class ServerCommands(str, Enum):
     """
     INFO = "info"
     LIVELOG = "livelog"
-
     HELP = "help"
 
 class ClientCommands(str, Enum):
     """ Task (xy) """
     INFO = "info"
-
-
     HELP = "help"
+    

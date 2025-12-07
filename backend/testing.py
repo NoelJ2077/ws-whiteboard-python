@@ -1,5 +1,5 @@
 from app.db.connection import get_pool
-import asyncio, uuid
+import uuid
 
 #dummy_cl_id = str(uuid.uuid4().hex[:24])
 #dummy_wb_uuid = str(uuid.uuid4())

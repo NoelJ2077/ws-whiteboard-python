@@ -1,30 +1,23 @@
+# github link: https://github.com/NoelJ2077/ws-whiteboard-python
 # Websocket Modul 2025 IT4b APP
 
 Requirements:
 requirements.txt
-Docker (creates 2 images)
+Docker
+
+# 2 images created, 1x mysql db, 1x app
 
 # Start frontend:
 python3 -m http.server 3000
 
-# DOCKER build img servicename(db|backend) or --build
-docker-compose up --build
-docker-compose up db
-# DOCKER update img after code changes on running container
-docker-compose restart backend
-# DOCKER start serivce
-docker-compose start db
-
 # mysql commands from Docker terminal 
 mysql -u username -p pw
-
-# create req.txt from working dir:
-#TOOD command
 
 # Ports
 mysql: 3306
 http: 3000 (python3 -m http.server 3000)
 
+# project structure. 
 whiteboard-app/
   
   .env

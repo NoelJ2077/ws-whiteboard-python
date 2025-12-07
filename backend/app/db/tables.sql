@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Clients (
     client_id varchar(36) PRIMARY KEY,
     client_email VARCHAR(40),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    isAdmin BOOLEAN DEFAULT 0 -- // START & // END -> (Task 2)
+    isAdmin BOOLEAN DEFAULT 0 -- // START (Task 2) & // END (Task 2)
 );
 
 -- 2. Whiteboards
