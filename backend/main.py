@@ -49,7 +49,7 @@ async def testapp():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     
-    cond = 0 # Only needed the first time to make tables and fill with dummy data. 
+    cond = 1# Only needed the first time to make tables and fill with dummy data. 
     if cond == 1:
         await init_db()
         await testapp()

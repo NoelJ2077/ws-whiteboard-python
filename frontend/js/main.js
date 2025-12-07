@@ -44,8 +44,15 @@ const log = (container, text, color = null) => {
 // ws receive from backend 
 ws.onmessage = event => {
     const container = document.getElementById('messages');
-    const data = JSON.parse(event.data);
-    console.log("onmsg", data);
+    let data;
+    try {
+        data = JSON.parse(event.data);
+    } catch(e) {
+        console.warn("Non-JSON WS message ignored: ", event.data);
+        return;
+    }
+    
+    if (!data.message) return; // helping 
     
     if (data.type === "servercmd" && data.message?.includes("E-Mail gesetzt")) {
         const email = data.message.match(/[\w.-]+@[\w.-]+\.\w+/);
@@ -85,7 +92,7 @@ ws.onmessage = event => {
     }
     // END (Task 2)
 
-    // standard (@Server, @Client)
+    // stdandard: (@Server, @Client)
     const [label, color] = msgTypes[data.type] || ["[Unknown]", null];
     log(container, `${label} ${data.message}`, color);
 };
@@ -110,7 +117,7 @@ function sendMessage() {
 
     if (ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify(payload));
-        console.log("Gesendet:", payload);
+        //console.log("Gesendet:", payload);
         input.value = "";
     } else alert("WebSocket nicht verbunden");
 } // END (Task 2)
