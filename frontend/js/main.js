@@ -1,5 +1,5 @@
-let clientId = sessionStorage.getItem("clientId") || 
-    (sessionStorage.setItem("clientId", crypto.randomUUID().replace(/-/g, "").slice(0,24)), sessionStorage.getItem("clientId"));
+let clientId = localStorage.getItem("clientId") || 
+    (localStorage.setItem("clientId", crypto.randomUUID().replace(/-/g, "").slice(0,24)), localStorage.getItem("clientId"));
 
 // DOM Init
 document.getElementById('clientId').textContent = clientId;
@@ -54,7 +54,7 @@ ws.onmessage = event => {
     
     if (data.type === "admin_status") {
         const newAdmin = data.curr_admin;
-        sessionStorage.setItem("currAdmin", newAdmin);
+        localStorage.setItem("currAdmin", newAdmin);
         document.getElementById("curr_admin").textContent = newAdmin;
         return;
     }
@@ -158,7 +158,7 @@ class AliasManager {
         if (!email) return void(this.clear());
         if (!this.validate(email)) return void this.fb('Ungültige E-Mail', 'error');
 
-        sessionStorage.setItem('userEmail', email);
+        localStorage.setItem('userEmail', email);
         this.update(email);
         this.fb('Sende...', 'loading');
 
@@ -171,9 +171,9 @@ class AliasManager {
     confirmEmailSuccess(email) {
         if (this.pending === email) this.fb('E-Mail gesetzt!', 'success'), this.pending = null;
     }
-    clear() { sessionStorage.removeItem('userEmail'); this.update('kein Alias'); this.fb('Gelöscht', 'info'); }
+    clear() { localStorage.removeItem('userEmail'); this.update('kein Alias'); this.fb('Gelöscht', 'info'); }
     update(text) { this.spans.forEach(s => { s.textContent = text; s.style.color = text === 'kein Alias' ? '#888' : '#2e8b57'; }); }
-    load() { this.update(sessionStorage.getItem('userEmail') || 'kein Alias'); }
+    load() { this.update(localStorage.getItem('userEmail') || 'kein Alias'); }
     fb(msg, type='info') {
         let el = document.getElementById('email-feedback') || (() => {
             const e = document.createElement('div'); e.id = 'email-feedback';
