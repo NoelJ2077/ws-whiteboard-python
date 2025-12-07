@@ -1,0 +1,204 @@
+/* Grundfarben Dark Mode */
+:root {
+    --bg-color: #1e1e2f;
+    --text-color: #e0e0e0;
+    --accent-color: #4f97ff;
+    --input-bg: #2a2a3d;
+    --input-border: #555;
+    --button-bg: #4f97ff;
+    --button-hover: #3a7de0;
+    --button-text: #fff;
+}
+
+/* Body */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* HEADER */
+.app-header {
+    background-color: #2a2a3d;
+    padding: 1rem;
+}
+
+/* div elements */
+.page-title-left {
+    display: flex;
+    gap: 0.5rem;
+}
+#alias {
+    text-decoration: underline;
+}
+
+/* NAV als Container für Buttons + Status */
+.app-header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Button-Gruppe */
+.nav-buttons {
+    display: flex;
+    gap: 0.5rem;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+/* Buttons */
+.app-header button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.app-header button:hover {
+    background-color: var(--button-hover);
+}
+
+#backend-status {
+    color: #ccc;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    background-color: #3a3a4f;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+/* MAIN CONTENT */
+.app-chat, .app-main {
+    flex: 1;
+    padding: 1rem 2rem;
+    overflow-y: auto;
+}
+
+.client-info, .log-section {
+    margin-bottom: 2rem;
+}
+
+#messages {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+}
+
+#messages li {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #444;
+    white-space: pre-line;
+}
+
+#messages li:last-child {
+    border-bottom: none;
+}
+
+/* INPUT AREA / CHAT FORM */
+.app-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+input[type="text"], select {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+select {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Buttons in Chat */
+.app-main button {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.app-main button:hover {
+    background-color: var(--button-hover);
+}
+
+/* FOOTER */
+.app-footer {
+    background-color: #2a2a3d;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.footer-item {
+    flex: 1;
+    height: 2rem;
+    background-color: #3a3a50;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Links Dark Mode */
+a {
+    color: #80bfff;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: #ffd700;
+}
+
+/* Autoscroll Messages */
+#messages {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--input-bg);
+}
+
+#messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: var(--input-bg);
+    border-radius: 5px;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 5px;
+}
+
+.msg_li_clid {
+    color: #ffd700;
+    float: right;
+}

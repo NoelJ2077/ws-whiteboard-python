@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:latest
+    container_name: wb_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql  # persistent db
+    restart: unless-stopped     # no restart
+
+  backend:
+    build: ./backend
+    container_name: wb_backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      WS_HOST: ${WS_HOST}
+      WS_PORT: ${WS_PORT}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app            # live reload
+    depends_on:
+      - db
+    restart: unless-stopped       # ensures only Python reloads, not the container
+
+volumes:
+  db_data:
+

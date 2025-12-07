@@ -1,0 +1,124 @@
+<!DOCTYPE html><!--chat-->
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Whiteboard Chat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+<header class="app-header">
+    <nav>
+        <div class="page-title-left">
+            <span class="pg-title-var" id="page-title">Livechat + Log</span>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='index.html'">Home</button>
+            <button class="nav-button" onclick="openChat()">Chats</button>
+            <button class="nav-button" onclick="openServerConsole()">@Server_Aktionen</button>
+        </div>
+        <div id="backend-status">Waiting for Status-fetch</div>
+    </nav>
+</header>
+
+<main class="app-main">
+
+    <div class="chat-main-grid">
+
+        <!-- LINKS: CHAT BEREICH -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <h1>Live Chat</h1>
+                <div class="status-badge" id="connectionStatus">Verbunden</div>
+            </div>
+
+            <ul id="messages"></ul>
+
+            <div class="input-area">
+                <select id="msgTypeSelect">
+                    <option value="personal">Personal (ich)</option>
+                    <option value="p2p">P2P → Client</option>
+                    <option value="group">Group-Chat</option>
+                    <option value="broadcast">Broadcast (alle)</option>
+                </select>
+
+                <input type="text" id="msgInput" placeholder="Nachricht schreiben und Enter drücken..." autocomplete="off" />
+
+                <button class="" onclick="sendMessage()">Senden</button>
+            </div>
+
+            <div class="extra-inputs">
+                <input type="text" id="clientInput" placeholder="Ziel-Client-ID (für P2P)" />
+                <input type="text" id="groupInput" placeholder="Group-ID (später)" disabled />
+            </div>
+        </div>
+
+        <!-- RECHTS: SIDEBAR MIT INFOS -->
+        <div class="sidebar-card">
+
+            <div class="sidebar-section">
+                <h3>Deine Daten</h3>
+                <div class="info-row">
+                    <span class="info-label">Client-ID:</span>
+                    <span class="info-value" id="clientId">Lädt...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email / Alias:</span>
+                    <span class="info-value alias">no email set</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Admin:</span>
+                    <span class="info-value" id="curr_admin">unbekannt</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Browser:</span>
+                    <span class="info-value" id="browser">Lädt...</span>
+                </div>
+            </div>
+
+        <div class="sidebar-section">
+
+        <h3>Email festlegen</h3>
+            <div class="setmail">
+                <input type="text" placeholder="deine@email.de" style="width:100%; padding:0.6rem; margin-bottom:0.5rem;" />
+                <button class="setmail-btn">Email speichern</button>
+            </div>
+        </div>
+            <div class="sidebar-section">
+                <h3>Gruppen</h3>
+                <div id="client-groups">Keine Gruppen beigetreten</div>
+                <div id="test">[Logik noch einzubauen.]</div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>QR-Code für Whiteboard</h3>
+                <div id="qrCodeContainer"></div>
+                <button class="btn-qr" onclick="get_addgroup_qrcode('wb_123')">QR-Code für wb_123 erzeugen</button>
+                <div id="test">[Logik noch einzubauen.]</div>
+
+                <input type="text" id="joinGroupInput" placeholder="Group-ID eingeben oder scannen" style="margin-top:0.8rem; width:100%; padding:0.6rem;" />
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+<footer class="app-footer">
+    <div class="footer-item">© Noël Jörg 2025</div>
+    <div class="footer-item">WebSocket • Chat(s)</div>
+    <div class="footer-item"><a href="https://github.com/NoelJ2077/ws-whiteboard-python" target="_blank">GitHub Source code</a></div>
+</footer>
+
+<script>
+    // Enter = Senden im Chat
+    document.getElementById("msgInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

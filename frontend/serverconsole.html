@@ -1,0 +1,109 @@
+<!DOCTYPE html><!-- serverconsole -->
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Console</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header class="app-header">
+    <nav>
+        <div class="page-title-left">
+            <span class="pg-title-var" id="page-title">Server Console</span>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='index.html'">Home</button>
+            <button class="nav-button" onclick="openChat()">Chats</button>
+            <button class="nav-button" onclick="openServerConsole()">@Server_Aktionen</button>
+        </div>
+        
+        <div id="backend-status">Waiting for Status-fetch</div>
+    </nav>
+</header>
+
+<main class="app-main">
+
+    <!-- SERVER CONSOLE BEREICH -->
+    <div class="console-header">
+        <h1>Server Console</h1>
+        <span class="pg-title-var alias">no email set</span>
+    </div>
+
+    <div class="console-card">
+
+        <div class="input-note">
+            <strong>Tipp:</strong> Wähle eine Befehlsklasse aus dem Dropdown – der passende Prefix wird automatisch eingetragen.<br>
+            Du kannst aber auch manuell tippen, z. B. <code>@server info</code> oder <code>@client 123abc ping</code>
+        </div>
+
+        <div class="input-group">
+            <select id="msgTypeSelect" onchange="prefillInput()">
+                <option value="servercmd"   data-prefill="">@server &lt;befehl&gt;</option>
+                <option value="clientcmd"   data-prefill="">@client &lt;befehl&gt; &lt;befehl&gt;</option>
+                <option value="serveradmincmd" data-prefill="Msg zum admin">@serveradmin &lt;nachricht&gt;</option>
+                <option value="server_infocmd" data-prefill="click_enter :D">@server-info</option>
+            </select>
+
+            <input type="text" id="msgInput" placeholder="Befehl oder Nachricht eingeben..." autocomplete="off" />
+
+            <button onclick="sendMessage()">Senden</button>
+        </div>
+
+        <div class="messages-container">
+            <h3>Antworten vom Server</h3>
+            <ul id="messages"></ul>
+        </div>
+
+        <div class="messages-container" style="margin-top: 1.5rem;">
+            <h3>Nachrichten nur für Admin Sichtbar (filter in js) </h3>
+            <ul id="msgtoadminonly"></ul>
+        </div>
+    </div>
+
+    <!-- CLIENT INFO – schick integriert -->
+    <div class="client-info-modern">
+        <div class="info-row">
+            <span class="label">Ihre Client-ID:</span>
+            <span class="value" id="clientId">Lädt...</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Aktueller Admin:</span>
+            <span class="value" id="curr_admin">unbekannt</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Browser / Gerät:</span>
+            <span class="value" id="browser">Lädt...</span>
+        </div>
+    </div>
+
+</main>
+
+<footer class="app-footer">
+    <div class="footer-item">&nbsp;&copy; Noël Jörg 2025</div>
+    <div class="footer-item">&nbsp;WebSocket • Serverconsole (@modules)</div>
+    <div class="footer-item">&nbsp;<a href="https://github.com/NoelJ2077/ws-whiteboard-python" target="_blank">GitHub Source code</a></div>
+</footer>
+<script>
+    // auto prefill
+    function prefillInput() {
+        const select = document.getElementById("msgTypeSelect");
+        const input = document.getElementById("msgInput");
+        const prefill = select.selectedOptions[0].dataset.prefill;
+        if (prefill && !input.value.includes('@')) {
+            input.value = prefill;
+        }
+        input.focus();
+    }
+
+    // via enter (optional)
+    document.getElementById("msgInput").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

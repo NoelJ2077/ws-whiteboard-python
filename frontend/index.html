@@ -1,0 +1,86 @@
+<!DOCTYPE html><!--index-->
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Whiteboard App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    
+<header class="app-header">
+    <nav>
+        <div class="page-title-left">
+            <span class="pg-title-var" id="page-title">Dashboard</span>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='index.html'">🏠 Homepage</button>
+            <button class="nav-button" onclick="openChat()">💬 Chats</button>
+            <!--<button class="nav-button" onclick="createWb()">📄 Create WB</button>-->
+            <button class="nav-button" onclick="openServerConsole()">⚙️ @Server_Aktionen</button>
+        </div>
+        <div id="backend-status">Waiting for Status-fetch</div>
+    </nav>
+</header>
+    <main class="app-main">
+        <section class="welcome-section">
+            <div class="console-header">
+                <h1>Willkommen im Chat-Client</h1>
+                <span class="pg-title-var alias">no email set</span>
+                <p class="subtitle">Verbunden als:</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-row">
+                    <span class="label">Ihre Client-ID:</span>
+                    <span id="clientId" class="value highlight">Wird geladen...</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Aktueller Admin:</span>
+                    <span class="value" id="curr_admin">unbekannt</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Browser / Gerät:</span>
+                    <span id="browser" class="value">Wird geladen...</span>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Verfügbare Befehle</h3>
+                    <ul>
+                        <li><code>@server</code> → Befehle</li>
+                        <li><code>@client &lt;id&gt;</code> → Befehle</li>
+                        <li><code>@server-info</code> → System- & Statusinfo (Task 2)</li>
+                        <li><code>@serveradmin &lt;text&gt;</code> → Msg an Admin (Task 2)</li>
+                    </ul>
+                    <small>Alle Befehle über die Navbar → <strong>@Server_Aktionen</strong></small>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Chat-Modi</h3>
+                    <ul>
+                        <li><strong>Personal</strong> → Msg an self</li>
+                        <li><strong>P2P</strong> → Msg via Client_id</li>
+                        <li><strong>Broadcast</strong> → Msg an alle Clients</li>
+                        <li>Group-Chats (in Entwicklung)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quick-tip">
+                <strong>Tipp:</strong> Prüfen des aktuellen admins möglich im sql container. 
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+        <div class="footer-item">&nbsp;&copy; Noël Jörg 2025</div>
+        <div class="footer-item">&nbsp;WebSocket • Homapage</div>
+        <div class="footer-item">&nbsp;<a href="https://github.com/NoelJ2077/ws-whiteboard-python" target="_blank">GitHub Source code</a></div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
