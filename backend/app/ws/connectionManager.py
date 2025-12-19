@@ -66,5 +66,4 @@ class ConnectionManager:
         if group_id in self.groups:
             self.groups[group_id].discard(websocket)
 
-    # ===== Whiteboard ===== 
-    # TODO: irgendwann
+

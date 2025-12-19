@@ -125,12 +125,6 @@ function sendMessage() {
 const get_addgroup_qrcode = id => new QRCode(document.getElementById("qrCodeContainer"), {text:id, width:150, height:150});
 const fillGroupInput = id => document.getElementById("joinGroupInput").value = id;
 
-async function loadClientGroups(id) {
-    const data = await (await fetch(`/api/client/${id}/groups`)).json();
-    const container = document.getElementById("client-groups");
-    container.innerHTML = data.groups.map(g => `<div>${g.wb_name} (${g.wb_id})</div>`).join("");
-}
-
 // navi
 const openChat = () => location.href = `/chat.html?clientId=${clientId}`;
 const openServerConsole = () => location.href = `/serverconsole.html?clientId=${clientId}`;

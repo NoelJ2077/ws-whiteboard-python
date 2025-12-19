@@ -46,38 +46,6 @@ class Repository:
             return None, None
 
     @staticmethod
-    async def insert_new_wb(client_id: str, wb_id: str, wb_name: str, invite_key: str = "uuid.uuid4"):
-
-        # M:N querys
-        query_wb = """
-        INSERT INTO Whiteboards (wb_id, wb_name, invite_key)
-        VALUES (%s, %s, %s)
-        """
-        query_mapping = """
-        INSERT INTO Client_Whiteboards (client_id, wb_id)
-        VALUES (%s, %s)
-        """
-
-        async with get_cursor(commit=True) as cur:
-            await cur.execute(query_wb, (wb_id, wb_name, invite_key))
-            await cur.execute(query_mapping, (client_id, wb_id))
-
-        return wb_id, invite_key
-    
-    @staticmethod
-    async def get_client_groups(client_id: str):
-        query = """
-        SELECT wb_id, wb_name FROM Whiteboards
-        INNER JOIN Client_Whiteboards USING(wb_id)
-        WHERE client_id=%s
-        """
-        async with get_cursor() as cur:
-            await cur.execute(query, (client_id,))
-            rows = await cur.fetchall()
-            # Liste von dicts zurückgeben
-            return [{"wb_id": row[0], "wb_name": row[1]} for row in rows]
-    
-    @staticmethod
     async def set_mail(client_id: str, mail: str):
         query = "UPDATE Clients SET client_email=%s WHERE client_id=%s"
         async with get_cursor(commit=True) as cur:

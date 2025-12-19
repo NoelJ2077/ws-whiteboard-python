@@ -3,7 +3,7 @@ version: "3.9"
 services:
   db:
     image: mysql:latest
-    container_name: wb_mysql
+    container_name: ws_mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
@@ -15,7 +15,7 @@ services:
 
   backend:
     build: ./backend
-    container_name: wb_backend
+    container_name: ws_backend
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     environment:
       DB_HOST: db

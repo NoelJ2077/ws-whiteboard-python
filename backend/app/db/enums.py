@@ -1,33 +1,7 @@
 from enum import Enum
-#  Usage: repository.insert_action(wb_id, user_id, ACTION.value)
+#  Usage: repository.insert_action(x_id, user_id, ACTION.value)
 # TODO: docs
 __doc__ = "Holds all Enums for this project. "
-
-class WbAction(str, Enum):
-    """Usage for whiteboard actions.
-    - line
-    - rect
-    - circle
-    - freehand
-    - erase
-    - text
-    - wave
-    """
-    LINE = "line"
-    RECT = "rect"
-    CIRCLE = "circle"
-    FREEHAND = "freehand"
-    ERASE = "erase"
-    TEXT = "text"
-    WAVE = "wave"
-
-class WbSysAction(str, Enum):
-    """Usage for whiteboard system actions."""
-    CREATE = "create"
-    RENAME = "rename"
-    DELETE = "delete"
-    CHAT_MESSAGE = "chat_message" # When a client sends a msg from this wb.
-
 
 class ClientAction(str, Enum):
     """Usage for client lifecycle and system events.
@@ -44,10 +18,7 @@ class ClientAction(str, Enum):
     DISCONNECT = "disconnect"
     ERROR = "error"
     RELOADT = "reloadt"
-    # JOIN = "join"               # wenn Nutzer einem Whiteboard beitritt
-    # LEAVE = "leave"             # wenn Nutzer ein Whiteboard verlässt
-    # AUTH_FAILED = "auth_failed" # optional für Security
-
+    
 class ServerCommands(str, Enum):
     """ Task1 server commands 
     - INFO (client_id) -> returns client information

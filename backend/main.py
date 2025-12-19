@@ -10,26 +10,17 @@ from app.utils.logger import Logger
 from app.ws import ws_router
 
 # tests
-from app.db.enums import WbAction, ClientAction
-from testing import create_dummy_user, create_dummy_wb, assign_dummy_wb, CL_ID, WB_ID
+from app.db.enums import ClientAction
+from testing import create_dummy_user, CL_ID
 
 Log = Logger(name="app-main")
 
 # test wb
 async def testapp():
     await create_dummy_user()
-    await create_dummy_wb()
-    await assign_dummy_wb()
 
-    Log.info("Dummy user + whiteboard created and assigned")
+    Log.info("Dummy user created.")
 
-    aldata = {
-        "wb_id": WB_ID, "client_id": CL_ID,
-        "action_type": WbAction.LINE.value,
-        "x1": 10, "y1": 10, "x2": 100, "y2": 100,
-        "color": "red", "thickness": 2,
-        "text_content": None
-    }
     cldata = {
         "client_id": CL_ID,
         "event_type": ClientAction.HANDSHAKE.value,
@@ -37,7 +28,6 @@ async def testapp():
     }
 
     try:
-        Log.debug("Log record Action", "al", aldata)
         Log.debug("Log record Client", "cl", cldata)
         Log.debug("Startup logging done.")
         return True
@@ -82,11 +72,11 @@ if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 RUN backend:
-cd ws-whiteboard-python\backend
+cd websocket_python\backend
 docker-compose up --build
 
 RUN frontend:
-cd ws-whiteboard-python\frontend
+cd websocket_python\frontend
 python3 -m http.server 3000
 
 """

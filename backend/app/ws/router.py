@@ -5,7 +5,6 @@ from app.db.repository import Repository
 from app.utils.logger import Logger
 from app.ws import ConnectionManager
 from app.ws.messagehandler import MessageHandler
-from app.services.whiteboard import Whiteboard
 
 Log = Logger(name="app-ws-router")
 
@@ -87,15 +86,3 @@ async def test_socket(websocket: WebSocket, client_id: str):
     await manager.connect(websocket)
     await websocket.send_text(f"Hello {client_id}, this is /ws/test/")
     # nur für Experimente gedacht
-
-# WB On Hold: is used on startup. 
-@ws_router.websocket("/ws/create/{client_id}")
-async def create_wb_socket(websocket: WebSocket, client_id: str):
-    await manager.connect(websocket)
-
-    if await Repository.existing_client(client_id):
-        new_wb = await Whiteboard.create_wb(client_id)
-        await websocket.send_text(f"Whiteboard {new_wb} created for {client_id}")
-    else:
-        await Repository.insert_client(client_id)
-        await websocket.send_text(f"Client {client_id} registered, please retry create.")

@@ -1,4 +1,4 @@
-# github link: https://github.com/NoelJ2077/ws-whiteboard-python
+# github link: https://github.com/NoelJ2077/websocket_python
 # Websocket Modul 2025 IT4b APP
 
 Requirements:
@@ -18,7 +18,7 @@ mysql: 3306
 http: 3000 (python3 -m http.server 3000)
 
 # project structure. 
-whiteboard-app/
+websocket_python/
   
   .env
   docker-compose.yaml        # Entrypoint for "compose up --build"
@@ -40,8 +40,7 @@ whiteboard-app/
         rm.sql               # unused
 
       services/              # Business Logic
-        taskhandler.py              
-        whiteboard.py        
+        taskhandler.py                     
         Modulaufgaben/
           __init__.py       # Import all modules with their functions. 
           Client/
@@ -75,7 +74,7 @@ whiteboard-app/
       main.css               # design v2
       style.css              # bootstrap / canvas
 
-    index.html               # whiteboard dashboard
+    index.html               # dashboard
     chat.html                # Chat
     serverconsole.html       # Server actions
 
@@ -86,3 +85,4 @@ whiteboard-app/
       login.html
       logout.html
       register.html
+      

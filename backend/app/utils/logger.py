@@ -29,7 +29,7 @@ class DBHandler(logging.Handler):
         - "cl" -> Client_log
     
     Sample:
-        # Log whiteboard action
+        # Log wb action -> out of service!
         Log.info(
             "Client drew a line",
             db_table="al",
